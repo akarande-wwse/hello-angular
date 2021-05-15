@@ -1,0 +1,45 @@
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="login-column d-flex flex-column shadow">
+    <div class="logo w-100 d-flex justify-content-center align-items-center">
+      <img [src]="logoUrl" alt="logo" />
+    </div>
+    <div class="d-flex justify-content-between p-3 mt-3">
+      <h4>Sign in</h4>
+      <a routerLink="/forgot-password">Forgot password?</a>
+    </div>
+    <form class="p-3 pt-0" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+      <mat-form-field class="w-100" appearance="outline" size="small">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+      <mat-form-field class="w-100 mb-2" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+        />
+      </mat-form-field>
+      <mat-checkbox
+        (change)="showPassword = !showPassword"
+        [checked]="showPassword"
+        class="w-100 mb-2"
+        >Show password</mat-checkbox
+      >
+      <mat-checkbox
+        (change)="keepSignedIn = !keepSignedIn"
+        [checked]="keepSignedIn"
+        >Keep me signed in</mat-checkbox
+      >
+      <button
+        mat-raised-button
+        color="primary"
+        class="submit-btn w-100 mt-4"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Sign in
+      </button>
+    </form>
+  </div>
+</div>

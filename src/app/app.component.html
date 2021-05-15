@@ -1,8 +1,9 @@
-<app-top-bar></app-top-bar>
+<app-header
+  class="d-flex justify-content-between shadow-sm"
+  [ngClass]="user.id ? '' : 'd-none'"
+></app-header>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.

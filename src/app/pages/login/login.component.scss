@@ -1,0 +1,17 @@
+.login-column {
+  width: 30rem;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .logo {
+    height: 6rem;
+    background-color: #ffd740;
+    img {
+      height: 2rem;
+    }
+  }
+
+  .submit-btn {
+    height: 3.5rem;
+  }
+}
