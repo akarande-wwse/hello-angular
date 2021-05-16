@@ -1,10 +1,5 @@
 @import "./common/styles.scss";
 
-app-header {
-  height: $header-height;
-  padding: 1rem 1.5rem;
-}
-
 .dashboard {
   height: calc(100% - $header-height);
 }

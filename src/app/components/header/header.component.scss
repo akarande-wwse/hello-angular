@@ -1,1 +1,6 @@
+@import "../../common/styles.scss";
 
+.header {
+  height: $header-height;
+  padding: 1rem 1.5rem;
+}
