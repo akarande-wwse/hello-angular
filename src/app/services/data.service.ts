@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
-import { User } from '../common/types';
-
-const user = JSON.parse(localStorage.getItem('user') || '{}');
-
-const userSubject = new BehaviorSubject(user);
-const userObservable = userSubject.asObservable();
+import { User, Group } from '../common/types';
+import { BASE_URL } from '../common/constants';
+import { GROUPS } from './in-memory-data';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  setUser(user: User) {
-    userSubject.next(user);
-    localStorage.setItem('user', JSON.stringify(user));
-  }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
-  getUser(): User {
-    return userSubject.value;
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  subscribeUser(observer: any) {
-    userObservable.subscribe(observer);
+  groups(): Observable<Group[]> {
+    return of(GROUPS);
   }
 }

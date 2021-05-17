@@ -1,0 +1,13 @@
+@import "../../common/styles.scss";
+
+.dashboard {
+  height: calc(100% - #{$header-height});
+
+  .sidenav {
+    border: 1px solid;
+  }
+
+  .content {
+    border: 1px solid;
+  }
+}

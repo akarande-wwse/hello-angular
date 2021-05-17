@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from './common/types';
-import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +11,10 @@ import { DataService } from './services/data.service';
 export class AppComponent implements OnInit {
   user = {} as User;
 
-  constructor(private dataService: DataService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.dataService.subscribeUser((user: User) => {
+    this.authService.subscribe((user: User) => {
       this.user = user;
     });
   }

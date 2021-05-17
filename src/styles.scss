@@ -2,7 +2,7 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
-  font-size: 1rem;
+  font-size: 0.94rem;
   font-family: "Roboto", Arial, sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +20,10 @@ html {
 
 a {
   text-decoration: none;
+}
+
+@media only screen and (min-width: 1920px) {
+  html {
+    font-size: 20px;
+  }
 }

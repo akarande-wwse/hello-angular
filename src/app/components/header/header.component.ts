@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 
 import { LOGO_URL } from '../../common/constants';
 import { User } from '../../common/types';
-import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +11,11 @@ import { DataService } from '../../services/data.service';
 })
 export class HeaderComponent {
   logoUrl = LOGO_URL;
+  @Input() user = {} as User;
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private authService: AuthService) {}
 
   logout() {
-    this.dataService.setUser({} as User);
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }

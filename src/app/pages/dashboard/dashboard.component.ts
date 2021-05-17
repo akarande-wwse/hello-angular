@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { DataService } from '../../services/data.service';
-import { User } from '../../common/types';
+import { Document, Folder, Group, Hierarchy } from '../../common/types';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,14 +9,20 @@ import { User } from '../../common/types';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  user = {} as User;
+  groups: Group[] = [];
+  hierarchy: Hierarchy = [];
+  documents: Document[] = [];
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.user = this.dataService.getUser();
-    if (!this.user.id) {
-      this.router.navigate(['/login']);
-    }
+    this.dataService.groups().subscribe((groups) => {
+      this.groups = groups;
+    });
+  }
+
+  onSelect(hierarchy: Hierarchy) {
+    this.hierarchy = hierarchy;
+    this.documents = (hierarchy[2] as Folder).documents;
   }
 }

@@ -1,3 +1,33 @@
 <div class="dashboard p-4">
-  <p>Hello {{ user.name }}</p>
+  <mat-sidenav-container class="h-100">
+    <mat-sidenav mode="side" opened class="w-25">
+      <div class="sidenav h-100 d-flex flex-column">
+        <mat-card><h5>Groups</h5></mat-card>
+        <app-tree [data]="groups" (select)="onSelect($event)"></app-tree>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content h-100 ms-3 d-flex flex-column">
+        <mat-card
+          ><h5>{{ hierarchy[2]?.name }} &nbsp;</h5>
+        </mat-card>
+        <nav aria-label="breadcrumb" class="p-3">
+          <ol class="breadcrumb">
+            <li
+              class="breadcrumb-item"
+              *ngFor="let node of hierarchy; let i = index"
+              [class.active]="i < 2"
+            >
+              <a>{{ node.name }}</a>
+            </li>
+          </ol>
+        </nav>
+        <ul>
+          <li class="mb-3" *ngFor="let doc of documents">
+            <a>{{ doc.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

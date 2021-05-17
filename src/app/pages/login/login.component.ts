@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { DataService } from '../../services/data.service';
 import { LOGO_URL } from '../../common/constants';
 
 @Component({
@@ -11,7 +9,7 @@ import { LOGO_URL } from '../../common/constants';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   logoUrl = LOGO_URL;
   loginForm = this.formBuilder.group({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -22,23 +20,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private dataService: DataService,
-    private router: Router
+    private authService: AuthService
   ) {}
-
-  ngOnInit() {
-    const user = this.dataService.getUser();
-    if (user.id) {
-      this.router.navigate(['/dashboard']);
-    }
-  }
 
   handleLogin(): void {
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe((user) => {
-      this.dataService.setUser(user);
-      this.router.navigate(['/dashboard']);
-    });
+    this.authService.login(email, password).subscribe();
   }
 }
