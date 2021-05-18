@@ -8,7 +8,7 @@
       <a routerLink="/forgot-password">Forgot password?</a>
     </div>
     <form class="p-3 pt-0" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
-      <mat-form-field class="w-100" appearance="outline" size="small">
+      <mat-form-field class="w-100" appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email" />
       </mat-form-field>

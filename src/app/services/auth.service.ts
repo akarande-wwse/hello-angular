@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string): Observable<User> {
+  login(email: string, password: string) {
     // const url = BASE_URL + '/login';
     // return this.http.get<User>(url, {
     //   ...this.httpOptions,

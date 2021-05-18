@@ -25,6 +25,7 @@ export interface Folder {
 export interface Document {
   id: number;
   name: string;
+  type?: string;
 }
 
 export type Hierarchy = (Group | Category | Folder | Document)[];

@@ -35,11 +35,11 @@ export const GROUPS = [
     categories: [
       {
         id: 21,
-        name: 'Firm Overview',
+        name: 'Z Capital SSF',
         folders: [
           {
             id: 211,
-            name: 'Marketing Materials',
+            name: 'Legal Document',
             documents: [
               {
                 id: 2111,
@@ -60,3 +60,16 @@ export const GROUPS = [
     ],
   },
 ];
+
+export const FORMS = {
+  general: {
+    bankName: '',
+    accountName: '',
+    accountNumber: '',
+  },
+  taxInfo: {
+    bankName: '',
+    accountName: '',
+    accountNumber: '',
+  },
+};

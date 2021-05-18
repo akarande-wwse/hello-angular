@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { AppRouterModule } from './pages/router.module';
+import { AppRouterModule } from './modules/router.module';
 
 @NgModule({
   imports: [AppRouterModule, HttpClientModule],

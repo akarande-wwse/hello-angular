@@ -3,13 +3,16 @@
     <mat-sidenav mode="side" opened class="w-25">
       <div class="sidenav h-100 d-flex flex-column">
         <mat-card><h5>Groups</h5></mat-card>
-        <app-tree [data]="groups" (select)="onSelect($event)"></app-tree>
+        <app-tree-nav
+          [data]="groups"
+          (docSelect)="onDocSelect($event)"
+        ></app-tree-nav>
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="content h-100 ms-3 d-flex flex-column">
         <mat-card
-          ><h5>{{ hierarchy[2]?.name }} &nbsp;</h5>
+          ><h5>{{ folder.name }} &nbsp;</h5>
         </mat-card>
         <nav aria-label="breadcrumb" class="p-3">
           <ol class="breadcrumb">
@@ -23,8 +26,8 @@
           </ol>
         </nav>
         <ul>
-          <li class="mb-3" *ngFor="let doc of documents">
-            <a>{{ doc.name }}</a>
+          <li *ngFor="let doc of folder.documents" (click)="handleDocOpen(doc)">
+            <a mat-button>{{ doc.name }}</a>
           </li>
         </ul>
       </div>

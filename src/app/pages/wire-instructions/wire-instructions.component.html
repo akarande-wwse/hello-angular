@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Wire Instructions</h1>
+<div mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="General">
+      <app-general-form [generalForm]="generalForm"></app-general-form>
+    </mat-tab>
+    <mat-tab label="Tax Info">
+      <app-tax-info-form [taxInfoForm]="taxInfoForm"></app-tax-info-form>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="handleSave()"
+    class="submit-btn"
+  >
+    Save
+  </button>
+</div>
