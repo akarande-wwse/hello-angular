@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, delay } from 'rxjs/operators';
 
 import { User } from '../common/types';
 import { BASE_URL } from '../common/constants';
@@ -23,6 +23,7 @@ export class AuthService {
   login(email: string, password: string) {
     const url = BASE_URL + `/users?email=${email}`;
     return this.http.get(url, this.httpOptions).pipe(
+      delay(1000),
       map((resp: any) => {
         if (resp.length) {
           return {
