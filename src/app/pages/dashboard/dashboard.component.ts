@@ -42,16 +42,15 @@ export class DashboardComponent implements OnInit {
       this.loading = true;
       this.dataService.wireInstructions().subscribe((resp) => {
         if (resp.status) {
-          this.handleFormOpen(resp.data);
+          this.dialog.open(WireInstructionsComponent, {
+            width: '40%',
+            data: resp.data,
+          });
         } else {
           this.snackBar.open(resp.message, '', { duration: 2000 });
         }
         this.loading = false;
       });
     }
-  }
-
-  handleFormOpen(data: any) {
-    this.dialog.open(WireInstructionsComponent, { width: '40%', data });
   }
 }

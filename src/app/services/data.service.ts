@@ -77,7 +77,7 @@ export class DataService {
 
   updateWireInstructions(data: any) {
     const url = BASE_URL + `/wireinstructions?userid=${data.userid}`;
-    return this.http.post(url, data, this.httpOptions).pipe(
+    return this.http.put(url, data, this.httpOptions).pipe(
       map((resp: any) => {
         return {
           status: true,
