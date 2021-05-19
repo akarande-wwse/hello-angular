@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, delay } from 'rxjs/operators';
 
 import { BASE_URL } from '../common/constants';
 import { AuthService } from './auth.service';
@@ -18,6 +18,7 @@ export class DataService {
   groups() {
     const url = BASE_URL + `/groups`;
     return this.http.get(url, this.httpOptions).pipe(
+      delay(1000),
       map((resp: any) => {
         return {
           groups: resp,
