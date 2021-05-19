@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 import { User } from '../common/types';
 import { BASE_URL } from '../common/constants';
@@ -21,16 +21,29 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string) {
-    // const url = BASE_URL + '/login';
-    // return this.http.get<User>(url, {
-    //   ...this.httpOptions,
-    //   params: { email, password },
-    // });
-    const fakeUser = { id: 11, name: 'Akshay Karande', email };
-    return of(fakeUser).pipe(
-      tap((user) => {
-        this.setUser(user);
-        this.router.navigate(['/dashboard']);
+    const url = BASE_URL + `/users?email=${email}`;
+    return this.http.get(url, this.httpOptions).pipe(
+      map((resp: any) => {
+        if (resp.length) {
+          return {
+            user: resp[0],
+            status: true,
+            message: 'Login successful!',
+          };
+        }
+        return {
+          status: false,
+          message: 'Invalid username or password!',
+        };
+      }),
+      tap((resp: any) => {
+        if (resp.status) {
+          this.setUser(resp.user);
+          this.router.navigate(['/dashboard']);
+        }
+      }),
+      catchError((err) => {
+        return of({ status: false, message: err.message });
       })
     );
   }
@@ -45,7 +58,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser(): User {
+  getUser() {
     return userSubject.value;
   }
 

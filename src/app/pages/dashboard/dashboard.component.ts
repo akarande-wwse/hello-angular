@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { DataService } from '../../services/data.service';
 import { Document, Folder, Group, Hierarchy } from '../../common/types';
 import { WireInstructionsComponent } from '../wire-instructions/wire-instructions.component';
-import { FORMS } from '../../services/in-memory-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +16,19 @@ export class DashboardComponent implements OnInit {
   hierarchy: Hierarchy = [];
   folder = {} as Folder;
   documents: Document[] = [];
+  loading = false;
 
-  constructor(private dataService: DataService, private dialog: MatDialog) {}
+  constructor(
+    private dataService: DataService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    this.dataService.groups().subscribe((groups) => {
-      this.groups = groups;
+    this.loading = true;
+    this.dataService.groups().subscribe((resp) => {
+      this.groups = resp.groups;
+      this.loading = false;
     });
   }
 
@@ -32,14 +39,19 @@ export class DashboardComponent implements OnInit {
 
   handleDocOpen(doc: Document) {
     if (doc.type === 'form') {
-      const dialogRef = this.dialog.open(WireInstructionsComponent, {
-        width: '600px',
-        data: FORMS,
-      });
-
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log('The dialog was closed');
+      this.loading = true;
+      this.dataService.wireInstructions().subscribe((resp) => {
+        if (resp.status) {
+          this.handleFormOpen(resp.data);
+        } else {
+          this.snackBar.open(resp.message, '', { duration: 2000 });
+        }
+        this.loading = false;
       });
     }
+  }
+
+  handleFormOpen(data: any) {
+    this.dialog.open(WireInstructionsComponent, { width: '40%', data });
   }
 }

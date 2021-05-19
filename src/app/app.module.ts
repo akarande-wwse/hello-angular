@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRouterModule } from './modules/router.module';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   imports: [AppRouterModule, HttpClientModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
 })
 export class AppModule {}
 

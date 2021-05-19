@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from '../../services/auth.service';
 import { LOGO_URL } from '../../common/constants';
@@ -17,14 +18,22 @@ export class LoginComponent {
   });
   showPassword = false;
   keepSignedIn = false;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {}
 
   handleLogin(): void {
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe();
+    this.loading = true;
+    this.authService.login(email, password).subscribe((resp) => {
+      if (!resp.status) {
+        this.snackBar.open(resp.message, '', { duration: 2000 });
+        this.loading = false;
+      }
+    });
   }
 }

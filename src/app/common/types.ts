@@ -4,6 +4,12 @@ export interface User {
   email: string;
 }
 
+export interface UserResponse {
+  user: User;
+  status: boolean;
+  message: string;
+}
+
 export interface Group {
   id: number;
   name: string;

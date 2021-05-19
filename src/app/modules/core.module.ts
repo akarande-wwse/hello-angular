@@ -11,6 +11,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HeaderComponent } from '../components/header/header.component';
 import { TreeNavComponent } from '../components/tree-nav/tree-nav.component';
@@ -36,6 +38,8 @@ const modules = [
   MatIconModule,
   MatDialogModule,
   MatTabsModule,
+  MatSnackBarModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

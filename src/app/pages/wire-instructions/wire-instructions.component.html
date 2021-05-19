@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Wire Instructions</h1>
 <div mat-dialog-content>
-  <mat-tab-group>
+  <mat-tab-group #tabGroup>
     <mat-tab label="General">
       <app-general-form [generalForm]="generalForm"></app-general-form>
     </mat-tab>
@@ -10,10 +10,13 @@
   </mat-tab-group>
 </div>
 <div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-stroked-button class="cancel-btn" (click)="dialogRef.close()">
+    Cancel
+  </button>
   <button
     mat-raised-button
     color="primary"
-    (click)="handleSave()"
+    (click)="handleSave(tabGroup)"
     class="submit-btn"
   >
     Save
