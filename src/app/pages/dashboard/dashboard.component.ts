@@ -26,10 +26,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.dataService.groupsWithDocuments().subscribe((resp) => {
-      this.groups = resp.groups;
-      this.loading = false;
-    });
+    this.dataService.groups().subscribe(
+      (res) => {
+        this.groups = res;
+        this.loading = false;
+      },
+      (err) => {
+        this.loading = false;
+      }
+    );
   }
 
   onDocSelect(hierarchy: Hierarchy) {
@@ -40,17 +45,19 @@ export class DashboardComponent implements OnInit {
   handleDocOpen(doc: Document) {
     if (doc.type === 'form') {
       this.loading = true;
-      this.dataService.wireInstructions().subscribe((resp) => {
-        if (resp.status) {
+      this.dataService.formDetails().subscribe(
+        (res) => {
+          this.loading = false;
           this.dialog.open(WireInstructionsComponent, {
             width: '40%',
-            data: resp.data,
+            data: res[0] || {},
           });
-        } else {
-          this.snackBar.open(resp.message, '', { duration: 2000 });
+        },
+        (err) => {
+          this.loading = false;
+          this.snackBar.open(err.message, '', { duration: 2000 });
         }
-        this.loading = false;
-      });
+      );
     }
   }
 }

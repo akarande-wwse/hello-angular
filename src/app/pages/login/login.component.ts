@@ -31,11 +31,19 @@ export class LoginComponent {
   handleLogin(): void {
     const { email, password } = this.loginForm.value;
     this.loading = true;
-    this.authService.login(email, password).subscribe((resp) => {
-      if (!resp.status) {
-        this.snackBar.open(resp.message, '', { duration: 2000 });
+    this.authService.login(email, password).subscribe(
+      (res) => {
         this.loading = false;
+        if (!res.length) {
+          this.snackBar.open('Invalid username or password!', '', {
+            duration: 2000,
+          });
+        }
+      },
+      (err) => {
+        this.loading = false;
+        this.snackBar.open(err.message, '', { duration: 2000 });
       }
-    });
+    );
   }
 }

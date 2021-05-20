@@ -54,16 +54,14 @@ export class WireInstructionsComponent implements OnInit {
       id: this.data.id,
     };
     const service = payload.userid
-      ? this.dataService.updateWireInstructions(payload)
-      : this.dataService.createWireInstructions(payload);
+      ? this.dataService.updateFormDetails(payload)
+      : this.dataService.addFormDetails(payload);
 
-    service.subscribe((resp) => {
-      if (!resp.status) {
-        this.snackBar.open(resp.message, '', { duration: 2000 });
-      } else {
-        this.dialogRef.close();
-        this.snackBar.open(resp.message, '', { duration: 2000 });
+    service.subscribe(
+      (res) => this.dialogRef.close(),
+      (err) => {
+        this.snackBar.open(err.message, '', { duration: 2000 });
       }
-    });
+    );
   }
 }

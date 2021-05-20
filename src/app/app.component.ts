@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from './common/types';
-import { AuthService } from './services/auth.service';
+import { Storage } from './common/storage';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +11,10 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
   user = {} as User;
 
-  constructor(private authService: AuthService) {}
+  constructor(private storage: Storage) {}
 
   ngOnInit() {
-    this.authService.subscribe((user: User) => {
+    this.storage.subscribeUser((user: User) => {
       this.user = user;
     });
   }

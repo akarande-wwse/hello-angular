@@ -5,15 +5,15 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { AuthService } from './auth.service';
+import { Storage } from '../common/storage';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private storage: Storage, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // return true if you want to navigate, otherwise return false
-    const user = this.authService.getUser();
+    const user = this.storage.getUser();
     if (!user.id) {
       this.router.navigate(['/login']);
       return false;
@@ -24,11 +24,11 @@ export class AuthGuard implements CanActivate {
 
 @Injectable({ providedIn: 'root' })
 export class NoAuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private storage: Storage, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // return true if you want to navigate, otherwise return false
-    const user = this.authService.getUser();
+    const user = this.storage.getUser();
     if (user.id) {
       this.router.navigate(['/dashboard']);
       return false;

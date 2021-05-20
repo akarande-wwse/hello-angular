@@ -1,96 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { BASE_URL } from '../common/constants';
-import { AuthService } from './auth.service';
+import { Group } from '../common/types';
+import { Storage } from '../common/storage';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  user = this.authService.getUser();
+  user = this.storage.getUser();
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private storage: Storage) {}
 
-  groupsWithDocuments() {
+  groups(): Observable<Group[]> {
     const url = BASE_URL + `/groups`;
-    return this.http.get(url, this.httpOptions).pipe(
-      delay(1000),
-      map((resp: any) => {
-        return {
-          groups: resp,
-          status: true,
-          message: 'Groups with documents',
-        };
-      }),
-      catchError((err) => {
-        return of({
-          groups: [],
-          status: false,
-          message: err.message,
-        });
-      })
-    );
+    return this.http.get<Group[]>(url, this.httpOptions);
   }
 
-  wireInstructions() {
+  formDetails(): Observable<any> {
     const url = BASE_URL + `/wireinstructions?userid=${this.user.id}`;
-    return this.http.get(url, this.httpOptions).pipe(
-      delay(500),
-      map((resp: any) => {
-        return {
-          data: resp[0] || {},
-          status: true,
-          message: 'Wire instructions',
-        };
-      }),
-      catchError((err) => {
-        return of({
-          data: {},
-          status: false,
-          message: err.message,
-        });
-      })
-    );
+    return this.http.get<any>(url, this.httpOptions);
   }
 
-  createWireInstructions(data: any) {
+  addFormDetails(data: any): Observable<any> {
     const url = BASE_URL + `/wireinstructions`;
     const payload = { ...data, userid: this.user.id };
-    return this.http.post(url, payload, this.httpOptions).pipe(
-      map((resp: any) => {
-        return {
-          status: true,
-          message: 'Wire instructions created',
-        };
-      }),
-      catchError((err) => {
-        return of({
-          status: false,
-          message: err.message,
-        });
-      })
-    );
+    return this.http.post<any>(url, payload, this.httpOptions);
   }
 
-  updateWireInstructions(data: any) {
+  updateFormDetails(data: any): Observable<any> {
     const url = BASE_URL + `/wireinstructions/${data.id}`;
-    return this.http.put(url, data, this.httpOptions).pipe(
-      map((resp: any) => {
-        return {
-          status: true,
-          message: 'Wire instructions updated',
-        };
-      }),
-      catchError((err) => {
-        return of({
-          status: false,
-          message: err.message,
-        });
-      })
-    );
+    return this.http.put<any>(url, data, this.httpOptions);
   }
 }
