@@ -51,6 +51,7 @@ export class WireInstructionsComponent implements OnInit {
       general: this.generalForm.value,
       taxInfo: this.taxInfoForm.value,
       userid: this.data.userid,
+      id: this.data.id,
     };
     const service = payload.userid
       ? this.dataService.updateWireInstructions(payload)

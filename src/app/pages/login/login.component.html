@@ -13,7 +13,15 @@
     <form class="p-3 pt-0" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" />
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="!loginForm.get('email')?.valid">
+          Please enter valid email
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="w-100 mb-2" appearance="outline">
         <mat-label>Password</mat-label>
@@ -21,7 +29,11 @@
           matInput
           [type]="showPassword ? 'text' : 'password'"
           formControlName="password"
+          [errorStateMatcher]="matcher"
         />
+        <mat-error *ngIf="!loginForm.get('password')?.valid">
+          Please enter password
+        </mat-error>
       </mat-form-field>
       <mat-checkbox
         (change)="showPassword = !showPassword"

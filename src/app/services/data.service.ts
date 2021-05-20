@@ -15,7 +15,7 @@ export class DataService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  groups() {
+  groupsWithDocuments() {
     const url = BASE_URL + `/groups`;
     return this.http.get(url, this.httpOptions).pipe(
       delay(1000),
@@ -39,6 +39,7 @@ export class DataService {
   wireInstructions() {
     const url = BASE_URL + `/wireinstructions?userid=${this.user.id}`;
     return this.http.get(url, this.httpOptions).pipe(
+      delay(500),
       map((resp: any) => {
         return {
           data: resp[0] || {},
@@ -76,7 +77,7 @@ export class DataService {
   }
 
   updateWireInstructions(data: any) {
-    const url = BASE_URL + `/wireinstructions?userid=${data.userid}`;
+    const url = BASE_URL + `/wireinstructions/${data.id}`;
     return this.http.put(url, data, this.httpOptions).pipe(
       map((resp: any) => {
         return {

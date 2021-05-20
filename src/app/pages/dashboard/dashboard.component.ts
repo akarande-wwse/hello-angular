@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.dataService.groups().subscribe((resp) => {
+    this.dataService.groupsWithDocuments().subscribe((resp) => {
       this.groups = resp.groups;
       this.loading = false;
     });

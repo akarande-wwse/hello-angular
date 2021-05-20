@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 import { AuthService } from '../../services/auth.service';
 import { LOGO_URL } from '../../common/constants';
@@ -23,7 +24,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public matcher: ErrorStateMatcher
   ) {}
 
   handleLogin(): void {
