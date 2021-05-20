@@ -1,7 +1,15 @@
 {
   "users": [
-    { "id": 1, "name": "Akshay Karande", "email": "akarande@wwse.com" },
-    { "id": 2, "name": "Ritika Singh", "email": "rsingh@wwse.com" }
+    {
+      "id": 1,
+      "name": "Akshay Karande",
+      "email": "akarande@wwse.com"
+    },
+    {
+      "id": 2,
+      "name": "Ritika Singh",
+      "email": "rsingh@wwse.com"
+    }
   ],
   "groups": [
     {
