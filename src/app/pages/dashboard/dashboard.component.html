@@ -4,6 +4,8 @@
     [fileSystemProvider]="folders"
     rootFolderName="Dataroom"
     height="100%"
+    (onSelectedFileOpened)="handleFileOpen($event)"
+    (onCurrentDirectoryChanged)="onFolderClick($event)"
   >
     <dxo-toolbar>
       <dxi-item
@@ -17,7 +19,8 @@
         widget="dxButton"
         [options]="{
           text: 'Change',
-          elementAttr: { class: 'change-investor' }
+          elementAttr: { class: 'change-investor' },
+          onClick: onChangeInvestor
         }"
       ></dxi-item>
       <dxi-item
@@ -42,3 +45,9 @@
     </dxo-toolbar>
   </dx-file-manager>
 </div>
+<pdf-viewer
+  [src]="fileToOpen.url"
+  [render-text]="true"
+  class="doc-viewer"
+  [class.d-none]="!fileToOpen.id"
+></pdf-viewer>

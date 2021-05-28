@@ -24,4 +24,5 @@ export interface File {
   name: string;
   folderId: number;
   isForm: boolean;
+  url: string;
 }

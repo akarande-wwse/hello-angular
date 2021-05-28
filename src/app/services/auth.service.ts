@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { User, Investor } from '../common/types';
-import { BASE_URL, UserRoles } from '../common/constants';
+import { BASE_URL } from '../common/constants';
 import { Storage } from '../common/storage';
 
 @Injectable({ providedIn: 'root' })

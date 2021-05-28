@@ -7,7 +7,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { SelectInvestorComponent } from '../pages/select-investor/select-investor.component';
 import { ForgotPasswordComponent } from '../pages/forgot-password/forgot-password.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
-import { AuthGuard, NoAuthGuard } from '../services/auth-guard';
+import { AuthGuard, NoAuthGuard } from '../services/auth-guard.service';
 
 const routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DataService } from '../../services/data.service';
 import { Folder, File, Investor } from '../../common/types';
@@ -15,11 +16,18 @@ export class DashboardComponent implements OnInit {
   hierarchy: Folder[] = [];
   selectedFolder = {} as Folder;
   files: File[] = [];
-  selectedFile = {} as File;
+  fileToOpen = {} as File;
   loading = false;
   investor = {} as Investor;
+  onChangeInvestor = () => {
+    this.router.navigateByUrl('select-investor');
+  };
 
-  constructor(private dataService: DataService, private storage: Storage) {}
+  constructor(
+    private dataService: DataService,
+    private storage: Storage,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const user = this.storage.getUser();
@@ -36,12 +44,12 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  onDocSelect(hierarchy: Folder[]) {
-    this.hierarchy = hierarchy;
-    this.selectedFolder = hierarchy.slice(-1)[0];
+  onFolderClick(event: any) {
+    console.log(event);
   }
 
-  handleFileOpen(file: File) {
+  handleFileOpen(event: any) {
+    const file = event.file.dataItem;
     if (file.isForm) {
       this.loading = true;
       this.dataService.formDetails().subscribe(
@@ -53,7 +61,7 @@ export class DashboardComponent implements OnInit {
         }
       );
     } else {
-      this.selectedFile = file;
+      this.fileToOpen = file;
     }
   }
 }
