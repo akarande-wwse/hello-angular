@@ -1,39 +1,44 @@
-<div class="spinner">
-  <mat-spinner *ngIf="loading"></mat-spinner>
-</div>
 <div class="dashboard p-4">
-  <mat-sidenav-container class="h-100">
-    <mat-sidenav mode="side" opened class="w-25">
-      <div class="sidenav h-100 d-flex flex-column">
-        <mat-card><h5>Groups</h5></mat-card>
-        <app-tree-nav
-          [data]="groups"
-          (docSelect)="onDocSelect($event)"
-        ></app-tree-nav>
-      </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="content h-100 ms-3 d-flex flex-column">
-        <mat-card
-          ><h5>{{ folder.name }} &nbsp;</h5>
-        </mat-card>
-        <nav aria-label="breadcrumb" class="p-3">
-          <ol class="breadcrumb">
-            <li
-              class="breadcrumb-item"
-              *ngFor="let node of hierarchy; let i = index"
-              [class.active]="i < 2"
-            >
-              <a>{{ node.name }}</a>
-            </li>
-          </ol>
-        </nav>
-        <ul>
-          <li *ngFor="let doc of folder.documents" (click)="handleDocOpen(doc)">
-            <a mat-button>{{ doc.name }}</a>
-          </li>
-        </ul>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <dx-file-manager
+    id="fileManager"
+    [fileSystemProvider]="folders"
+    rootFolderName="Dataroom"
+    height="100%"
+  >
+    <dxo-toolbar>
+      <dxi-item
+        widget="dxButton"
+        [options]="{
+          text: 'Investor: ' + investor.name,
+          elementAttr: { class: 'investor' }
+        }"
+      ></dxi-item>
+      <dxi-item
+        widget="dxButton"
+        [options]="{
+          text: 'Change',
+          elementAttr: { class: 'change-investor' }
+        }"
+      ></dxi-item>
+      <dxi-item
+        widget="dxButton"
+        [options]="{
+          icon: 'message',
+          elementAttr: { class: 'mail-icon' }
+        }"
+        location="after"
+      ></dxi-item>
+      <dxi-item name="separator" location="after"></dxi-item>
+      <dxi-item
+        widget="dxTextBox"
+        [options]="{ placeholder: 'Search' }"
+        location="after"
+      ></dxi-item>
+      <dxi-item
+        name="dxButton"
+        [options]="{ icon: 'search' }"
+        location="after"
+      ></dxi-item>
+    </dxo-toolbar>
+  </dx-file-manager>
 </div>

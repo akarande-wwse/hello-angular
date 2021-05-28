@@ -1,60 +1,45 @@
-<div class="spinner">
-  <mat-spinner *ngIf="loading"></mat-spinner>
-</div>
 <div class="h-100 d-flex justify-content-center align-items-center">
-  <div class="login-column d-flex flex-column shadow">
-    <div class="logo w-100 d-flex justify-content-center align-items-center">
-      <img [src]="logoUrl" alt="logo" />
-    </div>
-    <div class="d-flex justify-content-between p-3 mt-3">
-      <h4>Sign in</h4>
-      <a routerLink="/forgot-password">Forgot password?</a>
-    </div>
-    <form class="p-3 pt-0" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
-      <mat-form-field class="w-100" appearance="outline">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          type="email"
-          formControlName="email"
-          [errorStateMatcher]="matcher"
-        />
-        <mat-error *ngIf="!loginForm.get('email')?.valid">
-          Please enter valid email
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="w-100 mb-2" appearance="outline">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          [type]="showPassword ? 'text' : 'password'"
-          formControlName="password"
-          [errorStateMatcher]="matcher"
-        />
-        <mat-error *ngIf="!loginForm.get('password')?.valid">
-          Please enter password
-        </mat-error>
-      </mat-form-field>
-      <mat-checkbox
-        (change)="showPassword = !showPassword"
-        [checked]="showPassword"
-        class="w-100 mb-2"
-        >Show password</mat-checkbox
-      >
-      <mat-checkbox
-        (change)="keepSignedIn = !keepSignedIn"
-        [checked]="keepSignedIn"
-        >Keep me signed in</mat-checkbox
-      >
-      <button
-        mat-raised-button
-        color="primary"
-        class="submit-btn w-100 mt-4"
-        type="submit"
-        [disabled]="!loginForm.valid"
-      >
-        Sign in
-      </button>
+  <div class="login p-3 d-flex flex-column shadow">
+    <img [src]="logoUrl" alt="logo" class="logo w-100 mb-3" />
+    <a routerLink="/forgot-password" class="forgot">Forgot password?</a>
+    <form (submit)="handleLogin($event)">
+      <dx-form id="loginForm" [formData]="formData" class="w-100">
+        <dxi-item itemType="group" caption="Sign in">
+          <dxi-item
+            dataField="username"
+            [editorOptions]="{ placeholder: 'User Name' }"
+            [label]="{ visible: false }"
+          >
+            <dxi-validation-rule
+              type="required"
+              message="User name is required"
+            >
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item></dxi-item>
+          <dxi-item
+            dataField="password"
+            [editorOptions]="{
+              mode: showPassword ? 'text' : 'password',
+              placeholder: 'Password'
+            }"
+            [label]="{ visible: false }"
+          >
+            <dxi-validation-rule type="required" message="Password is required">
+            </dxi-validation-rule>
+          </dxi-item>
+        </dxi-item>
+        <dxi-item itemType="button" [buttonOptions]="buttonOptions"> </dxi-item>
+      </dx-form>
     </form>
+    <p class="login-error">{{ message }}</p>
+    <dx-check-box
+      [value]="showPassword"
+      text="Show Password"
+      (onValueChanged)="showPassword = !showPassword"
+      [elementAttr]="{ class: 'show-password' }"
+    >
+      Show Password
+    </dx-check-box>
   </div>
 </div>

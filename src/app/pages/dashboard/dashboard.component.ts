@@ -1,34 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
-import { Document, Folder, Group, Hierarchy } from '../../common/types';
-import { WireInstructionsComponent } from '../wire-instructions/wire-instructions.component';
+import { Folder, File, Investor } from '../../common/types';
+import { Storage } from '../../common/storage';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit {
-  groups: Group[] = [];
-  hierarchy: Hierarchy = [];
-  folder = {} as Folder;
-  documents: Document[] = [];
+  folders: Folder[] = [];
+  hierarchy: Folder[] = [];
+  selectedFolder = {} as Folder;
+  files: File[] = [];
+  selectedFile = {} as File;
   loading = false;
+  investor = {} as Investor;
 
-  constructor(
-    private dataService: DataService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
-  ) {}
+  constructor(private dataService: DataService, private storage: Storage) {}
 
   ngOnInit(): void {
+    const user = this.storage.getUser();
+    this.investor = user.investor;
     this.loading = true;
-    this.dataService.groups().subscribe(
+    this.dataService.folders().subscribe(
       (res) => {
-        this.groups = res;
+        this.folders = res;
         this.loading = false;
       },
       (err) => {
@@ -37,27 +36,24 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  onDocSelect(hierarchy: Hierarchy) {
+  onDocSelect(hierarchy: Folder[]) {
     this.hierarchy = hierarchy;
-    this.folder = hierarchy.slice(-1)[0] as Folder;
+    this.selectedFolder = hierarchy.slice(-1)[0];
   }
 
-  handleDocOpen(doc: Document) {
-    if (doc.type === 'form') {
+  handleFileOpen(file: File) {
+    if (file.isForm) {
       this.loading = true;
       this.dataService.formDetails().subscribe(
         (res) => {
           this.loading = false;
-          this.dialog.open(WireInstructionsComponent, {
-            width: '40%',
-            data: res[0] || {},
-          });
         },
         (err) => {
           this.loading = false;
-          this.snackBar.open(err.message, '', { duration: 2000 });
         }
       );
+    } else {
+      this.selectedFile = file;
     }
   }
 }

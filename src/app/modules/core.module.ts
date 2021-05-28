@@ -13,18 +13,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {
+  DxCheckBoxModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxButtonModule,
+  DxFormModule,
+  DxAutocompleteModule,
+  DxFileManagerModule,
+} from 'devextreme-angular';
 
 import { HeaderComponent } from '../components/header/header.component';
-import { TreeNavComponent } from '../components/tree-nav/tree-nav.component';
-import { GeneralFormComponent } from '../forms/general-form/general-form.component';
-import { TaxInfoFormComponent } from '../forms/tax-info-form/tax-info-form.component';
 
-const components = [
-  HeaderComponent,
-  TreeNavComponent,
-  GeneralFormComponent,
-  TaxInfoFormComponent,
-];
+const components = [HeaderComponent];
 const modules = [
   BrowserModule,
   BrowserAnimationsModule,
@@ -40,6 +41,13 @@ const modules = [
   MatTabsModule,
   MatSnackBarModule,
   MatProgressSpinnerModule,
+  DxCheckBoxModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxButtonModule,
+  DxFormModule,
+  DxAutocompleteModule,
+  DxFileManagerModule,
 ];
 
 @NgModule({

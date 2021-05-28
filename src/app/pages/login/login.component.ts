@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { Component, ViewChild } from '@angular/core';
+import { DxFormComponent } from 'devextreme-angular';
 
 import { AuthService } from '../../services/auth.service';
 import { LOGO_URL } from '../../common/constants';
@@ -12,37 +10,35 @@ import { LOGO_URL } from '../../common/constants';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  @ViewChild(DxFormComponent, { static: false }) loginForm!: DxFormComponent;
+  formData = { username: '', password: '' };
+  buttonOptions = {
+    useSubmitBehavior: true,
+    text: 'Sign in',
+    elementAttr: { class: 'w-100 mt-5' },
+    type: 'default',
+  };
   logoUrl = LOGO_URL;
-  loginForm = this.formBuilder.group({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
   showPassword = false;
-  keepSignedIn = false;
   loading = false;
+  message = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private snackBar: MatSnackBar,
-    public matcher: ErrorStateMatcher
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  handleLogin(): void {
-    const { email, password } = this.loginForm.value;
+  handleLogin(event: Event): void {
+    event.preventDefault();
+    const { username, password } = this.loginForm.formData;
     this.loading = true;
-    this.authService.login(email, password).subscribe(
+    this.authService.login(username, password).subscribe(
       (res) => {
         this.loading = false;
         if (!res.length) {
-          this.snackBar.open('Invalid username or password!', '', {
-            duration: 2000,
-          });
+          this.message = 'Invalid username or password!';
         }
       },
       (err) => {
         this.loading = false;
-        this.snackBar.open(err.message, '', { duration: 2000 });
+        this.message = err.message;
       }
     );
   }

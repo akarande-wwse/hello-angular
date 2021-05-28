@@ -1,0 +1,29 @@
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="select-investor p-3 d-flex flex-column">
+    <img [src]="logoUrl" alt="logo" class="logo w-100 mb-3" />
+    <form (submit)="handleSelect($event)">
+      <dx-form id="selectInvestorForm" [formData]="formData" class="w-100">
+        <dxi-item itemType="group" caption="Select Investor">
+          <dxi-item
+            dataField="investorId"
+            editorType="dxSelectBox"
+            [editorOptions]="{
+              dataSource: investors,
+              valueExpr: 'id',
+              displayExpr: 'name'
+            }"
+            [label]="{ visible: false }"
+          >
+            <dxi-validation-rule
+              type="required"
+              message="Please select investor"
+            >
+            </dxi-validation-rule>
+          </dxi-item>
+        </dxi-item>
+        <dxi-item itemType="button" [buttonOptions]="buttonOptions"> </dxi-item>
+      </dx-form>
+    </form>
+    <p class="message">{{ message }}</p>
+  </div>
+</div>

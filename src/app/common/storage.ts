@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { User } from '../common/types';
+import { Investor, User } from '../common/types';
 
 const user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -15,11 +15,19 @@ export class Storage {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser() {
+  getUser(): User {
     return userSubject.value;
   }
 
   subscribeUser(observer: any) {
     userObservable.subscribe(observer);
+  }
+
+  setInvestor(investor: Investor) {
+    this.setUser({ ...this.getUser(), investor });
+  }
+
+  getInvestor(): Investor {
+    return userSubject.value.investor;
   }
 }

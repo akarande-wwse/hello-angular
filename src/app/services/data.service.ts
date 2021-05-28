@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { BASE_URL } from '../common/constants';
-import { Group } from '../common/types';
+import { Folder } from '../common/types';
 import { Storage } from '../common/storage';
 
 @Injectable({ providedIn: 'root' })
@@ -15,9 +15,9 @@ export class DataService {
 
   constructor(private http: HttpClient, private storage: Storage) {}
 
-  groups(): Observable<Group[]> {
-    const url = BASE_URL + `/groups`;
-    return this.http.get<Group[]>(url, this.httpOptions);
+  folders(): Observable<Folder[]> {
+    const url = BASE_URL + `/folders`;
+    return this.http.get<Folder[]>(url, this.httpOptions);
   }
 
   formDetails(): Observable<any> {

@@ -2,30 +2,26 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  roleId: number;
+  investor: Investor;
 }
 
-export interface Group {
+export interface Investor {
   id: number;
   name: string;
-  categories: Category[];
-}
-
-export interface Category {
-  id: number;
-  name: string;
-  folders: Folder[];
+  userId: number;
 }
 
 export interface Folder {
   id: number;
   name: string;
-  documents: Document[];
+  items: Folder[];
+  isForm: boolean;
 }
 
-export interface Document {
+export interface File {
   id: number;
   name: string;
-  type?: string;
+  folderId: number;
+  isForm: boolean;
 }
-
-export type Hierarchy = (Group | Category | Folder | Document)[];

@@ -1,6 +1,6 @@
 @import "../../common/styles.scss";
 
-.login {
+.select-investor {
   width: 26rem;
   position: relative;
   border: 1px solid #ddd;
@@ -10,21 +10,9 @@
     border: 1px solid;
   }
 
-  .forgot {
+  .message {
     position: absolute;
-    right: 1rem;
-    top: 8.25rem;
-    z-index: 100;
-  }
-
-  .show-password {
-    position: absolute;
-    bottom: 4rem;
-  }
-
-  .login-error {
-    position: absolute;
-    bottom: 5rem;
+    bottom: 3rem;
     color: $red-color;
   }
 }

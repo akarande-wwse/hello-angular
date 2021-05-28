@@ -18,6 +18,10 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
+    if (state.url === '/dashboard' && !user.investor) {
+      this.router.navigateByUrl('/select-investor');
+      return false;
+    }
     return true;
   }
 }
@@ -30,7 +34,7 @@ export class NoAuthGuard implements CanActivate {
     // return true if you want to navigate, otherwise return false
     const user = this.storage.getUser();
     if (user.id) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigateByUrl('/dashboard');
       return false;
     }
     return true;

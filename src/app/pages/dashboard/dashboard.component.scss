@@ -3,11 +3,27 @@
 .dashboard {
   height: calc(100% - #{$header-height});
 
-  .sidenav {
-    border: 1px solid;
+  .mail-icon i {
+    font-size: 2rem;
+    margin-right: 0.5rem;
   }
 
-  .content {
-    border: 1px solid;
+  .investor {
+    position: relative;
+    left: -1rem;
+    span {
+      font-size: 1rem;
+    }
   }
+
+  .change-investor {
+    color: $main-color;
+    position: relative;
+    left: -3rem;
+  }
+}
+
+.doc-viewer {
+  width: 100%;
+  height: 100%;
 }

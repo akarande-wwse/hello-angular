@@ -3,34 +3,60 @@
     {
       "id": 1,
       "name": "Akshay Karande",
-      "email": "akarande@wwse.com"
+      "username": "akarande@wwse.com",
+      "roleId": 1
     },
     {
       "id": 2,
       "name": "Ritika Singh",
-      "email": "rsingh@wwse.com"
+      "username": "rsingh@wwse.com",
+      "roleId": 2
     }
   ],
-  "groups": [
+  "investors": [
+    {
+      "id": 1,
+      "name": "ABC Capital",
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "name": "XYZ Capital",
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "name": "PQR Capital",
+      "userId": 1
+    }
+  ],
+  "folders": [
     {
       "id": 1,
       "name": "Z Capital Group",
-      "categories": [
+      "isDirectory": true,
+      "items": [
         {
           "id": 11,
           "name": "Firm Overview",
-          "folders": [
+          "isDirectory": true,
+          "items": [
             {
               "id": 111,
               "name": "Marketing Materials",
-              "documents": [
+              "isDirectory": true,
+              "items": [
                 {
                   "id": 1111,
-                  "name": "One Page Summary"
+                  "name": "One Page Summary",
+                  "isDirectory": false,
+                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
                 },
                 {
                   "id": 1112,
-                  "name": "Investor Presentation"
+                  "name": "Investor Presentation",
+                  "isDirectory": false,
+                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
                 }
               ]
             }
@@ -41,22 +67,29 @@
     {
       "id": 2,
       "name": "Private Equity Funds",
-      "categories": [
+      "isDirectory": true,
+      "items": [
         {
           "id": 21,
           "name": "Z Capital SSF",
-          "folders": [
+          "isDirectory": true,
+          "items": [
             {
               "id": 211,
               "name": "Legal Document",
-              "documents": [
-                {
-                  "id": 1113,
-                  "name": "Terms Sheet"
-                },
+              "isDirectory": true,
+              "items": [
                 {
                   "id": 2111,
-                  "name": "One Page Summary"
+                  "name": "Terms Sheet",
+                  "isDirectory": false,
+                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
+                },
+                {
+                  "id": 2112,
+                  "name": "One Page Summary",
+                  "isDirectory": false,
+                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
                 }
               ]
             }
@@ -65,5 +98,10 @@
       ]
     }
   ],
-  "wireinstructions": []
+  "forms": [
+    {
+      "id": 1,
+      "name": "Wired Instructions"
+    }
+  ]
 }
