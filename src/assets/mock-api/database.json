@@ -3,31 +3,29 @@
     {
       "id": 1,
       "name": "Akshay Karande",
-      "username": "akarande@wwse.com",
-      "roleId": 1
+      "username": "akshay123"
     },
     {
       "id": 2,
       "name": "Ritika Singh",
-      "username": "rsingh@wwse.com",
-      "roleId": 2
+      "username": "ritika123"
     }
   ],
   "investors": [
     {
       "id": 1,
       "name": "ABC Capital",
-      "userId": 2
+      "userId": 1
     },
     {
       "id": 2,
       "name": "XYZ Capital",
-      "userId": 2
+      "userId": 1
     },
     {
       "id": 2,
       "name": "PQR Capital",
-      "userId": 1
+      "userId": 2
     }
   ],
   "folders": [
@@ -50,13 +48,13 @@
                   "id": 1111,
                   "name": "One Page Summary",
                   "isDirectory": false,
-                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
+                  "complianceId": 1
                 },
                 {
                   "id": 1112,
                   "name": "Investor Presentation",
                   "isDirectory": false,
-                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
+                  "complianceId": 1
                 }
               ]
             }
@@ -83,13 +81,13 @@
                   "id": 2111,
                   "name": "Terms Sheet",
                   "isDirectory": false,
-                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
+                  "complianceId": 1
                 },
                 {
                   "id": 2112,
                   "name": "One Page Summary",
                   "isDirectory": false,
-                  "url": "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
+                  "complianceId": 1
                 }
               ]
             }
@@ -102,6 +100,12 @@
     {
       "id": 1,
       "name": "Wired Instructions"
+    }
+  ],
+  "compliances": [
+    {
+      "id": 1,
+      "text": "<p>\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Penatibus et magnis\ndis parturient. Eget dolor morbi non arcu risus. Tristique magna sit amet\npurus gravida quis blandit. Auctor urna nunc id cursus metus aliquam\neleifend mi in. Tellus orci ac auctor augue mauris augue neque gravida.\nNullam vehicula ipsum a arcu. Nullam ac tortor vitae purus faucibus ornare\nsuspendisse sed nisi. Cursus in hac habitasse platea dictumst. Egestas dui\nid ornare arcu. Dictumst vestibulum rhoncus est pellentesque elit\nullamcorper dignissim.\n</p>\n<p>\nMauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar.\nNeque volutpat ac tincidunt vitae semper quis lectus. Sed sed risus\npretium quam vulputate dignissim suspendisse in. Urna nec tincidunt\npraesent semper feugiat nibh sed pulvinar. Ultricies lacus sed turpis\ntincidunt id aliquet risus feugiat. Amet cursus sit amet dictum sit amet\njusto donec enim. Vestibulum rhoncus est pellentesque elit ullamcorper. Id\naliquet risus feugiat in ante metus dictum at.\n</p>\n<p>\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Penatibus et magnis\ndis parturient. Eget dolor morbi non arcu risus. Tristique magna sit amet\npurus gravida quis blandit. Auctor urna nunc id cursus metus aliquam\neleifend mi in. Tellus orci ac auctor augue mauris augue neque gravida.\nNullam vehicula ipsum a arcu. Nullam ac tortor vitae purus faucibus ornare\nsuspendisse sed nisi. Cursus in hac habitasse platea dictumst. Egestas dui\nid ornare arcu. Dictumst vestibulum rhoncus est pellentesque elit\nullamcorper dignissim.\n</p>\n<p>\nMauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar.\nNeque volutpat ac tincidunt vitae semper quis lectus. Sed sed risus\npretium quam vulputate dignissim suspendisse in. Urna nec tincidunt\npraesent semper feugiat nibh sed pulvinar. Ultricies lacus sed turpis\ntincidunt id aliquet risus feugiat. Amet cursus sit amet dictum sit amet\njusto donec enim. Vestibulum rhoncus est pellentesque elit ullamcorper. Id\naliquet risus feugiat in ante metus dictum at.\n</p>"
     }
   ]
 }

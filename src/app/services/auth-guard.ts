@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { Storage } from '../common/storage';
+import { Storage } from '../services/storage';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {

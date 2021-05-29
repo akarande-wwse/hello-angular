@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DataService } from '../../services/data.service';
-import { Folder, File, Investor } from '../../common/types';
-import { Storage } from '../../common/storage';
+import { Folder, File, Investor, Compliance } from '../../common/types';
+import { Storage } from '../../services/storage';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
   files: File[] = [];
   fileToOpen = {} as File;
   loading = false;
+  showNDA = false;
+  fileNDA = {} as Compliance;
   investor = {} as Investor;
   onChangeInvestor = () => {
     this.router.navigateByUrl('select-investor');
@@ -45,23 +47,25 @@ export class DashboardComponent implements OnInit {
   }
 
   onFolderClick(event: any) {
-    console.log(event);
+    console.log('folder', event);
   }
 
   handleFileOpen(event: any) {
-    const file = event.file.dataItem;
+    const file: File = event.file.dataItem;
     if (file.isForm) {
       this.loading = true;
-      this.dataService.formDetails().subscribe(
+    } else {
+      this.loading = true;
+      this.fileToOpen = file;
+      this.dataService.compliance(file.complianceId).subscribe(
         (res) => {
           this.loading = false;
+          console.log('compliance', res);
         },
         (err) => {
           this.loading = false;
         }
       );
-    } else {
-      this.fileToOpen = file;
     }
   }
 }

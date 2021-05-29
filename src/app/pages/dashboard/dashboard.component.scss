@@ -4,8 +4,8 @@
   height: calc(100% - #{$header-height});
 
   .mail-icon i {
-    font-size: 2rem;
-    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    margin-right: 0.25rem;
   }
 
   .investor {
@@ -13,7 +13,8 @@
     left: -1rem;
     pointer-events: none;
     span {
-      font-size: 1rem;
+      font-size: 1.06rem;
+      font-weight: 600;
     }
   }
 

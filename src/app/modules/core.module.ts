@@ -10,6 +10,7 @@ import {
   DxFormModule,
   DxAutocompleteModule,
   DxFileManagerModule,
+  DxPopupModule,
 } from 'devextreme-angular';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
@@ -20,6 +21,7 @@ const modules = [
   BrowserModule,
   BrowserAnimationsModule,
   ReactiveFormsModule,
+  DxPopupModule,
   DxCheckBoxModule,
   DxSelectBoxModule,
   DxNumberBoxModule,

@@ -5,7 +5,7 @@ import { DxFormComponent } from 'devextreme-angular';
 import { AuthService } from '../../services/auth.service';
 import { LOGO_URL } from '../../common/constants';
 import { Investor } from '../../common/types';
-import { Storage } from '../../common/storage';
+import { Storage } from '../../services/storage';
 
 @Component({
   selector: 'app-select-investor',
@@ -30,7 +30,9 @@ export class SelectInvestorComponent implements OnInit {
     private authService: AuthService,
     private storage: Storage,
     private router: Router
-  ) {}
+  ) {
+    this.storage.setInvestor(null as any);
+  }
 
   ngOnInit() {
     this.authService.investors().subscribe(

@@ -24,5 +24,10 @@ export interface File {
   name: string;
   folderId: number;
   isForm: boolean;
-  url: string;
+  complianceId: number;
+}
+
+export interface Compliance {
+  id: number;
+  text: string;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from './common/types';
-import { Storage } from './common/storage';
+import { Storage } from './services/storage';
 
 @Component({
   selector: 'app-root',

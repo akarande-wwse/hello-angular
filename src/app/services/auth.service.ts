@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import { User, Investor } from '../common/types';
 import { BASE_URL } from '../common/constants';
-import { Storage } from '../common/storage';
+import { Storage } from '../services/storage';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

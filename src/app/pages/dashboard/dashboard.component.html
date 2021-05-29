@@ -46,8 +46,32 @@
   </dx-file-manager>
 </div>
 <pdf-viewer
-  [src]="fileToOpen.url"
+  src="
+    https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf
+  "
   [render-text]="true"
   class="doc-viewer"
   [class.d-none]="!fileToOpen.id"
 ></pdf-viewer>
+<dx-popup
+  [width]="660"
+  [height]="540"
+  [showTitle]="true"
+  title="Non-disclosure Agreement"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="showNDA"
+>
+  <div class="popup-body" [innerHTML]="fileNDA.text"></div>
+  <div class="d-flex justify-content-end">
+    <dx-button
+      [elementAttr]="{ class: 'me-3' }"
+      (onClick)="showNDA = false"
+      text="Save"
+      type="default"
+    >
+    </dx-button>
+    <dx-button (onClick)="showNDA = false" text="Cancel" type="default">
+    </dx-button>
+  </div>
+</dx-popup>
