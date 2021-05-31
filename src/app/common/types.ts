@@ -30,4 +30,5 @@ export interface File {
 export interface Compliance {
   id: number;
   text: string;
+  resource: File | Folder;
 }

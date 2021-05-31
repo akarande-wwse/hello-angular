@@ -15,8 +15,9 @@ import {
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { HeaderComponent } from '../components/header/header.component';
+import { NDAPopupComponent } from '../components/nda-popup/nda-popup.component';
 
-const components = [HeaderComponent];
+const components = [HeaderComponent, NDAPopupComponent];
 const modules = [
   BrowserModule,
   BrowserAnimationsModule,

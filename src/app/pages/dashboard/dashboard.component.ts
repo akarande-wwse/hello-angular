@@ -13,13 +13,10 @@ import { Storage } from '../../services/storage';
 })
 export class DashboardComponent implements OnInit {
   folders: Folder[] = [];
-  hierarchy: Folder[] = [];
-  selectedFolder = {} as Folder;
   files: File[] = [];
   fileToOpen = {} as File;
   loading = false;
-  showNDA = false;
-  fileNDA = {} as Compliance;
+  compliance = {} as Compliance;
   investor = {} as Investor;
   onChangeInvestor = () => {
     this.router.navigateByUrl('select-investor');
@@ -56,16 +53,23 @@ export class DashboardComponent implements OnInit {
       this.loading = true;
     } else {
       this.loading = true;
-      this.fileToOpen = file;
       this.dataService.compliance(file.complianceId).subscribe(
         (res) => {
           this.loading = false;
-          console.log('compliance', res);
+          this.compliance = {
+            ...res,
+            resource: file,
+          };
         },
         (err) => {
           this.loading = false;
         }
       );
     }
+  }
+
+  onComplianceAgree(resource: File) {
+    this.compliance = {} as Compliance;
+    this.fileToOpen = resource;
   }
 }

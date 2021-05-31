@@ -1,0 +1,28 @@
+<dx-popup
+  [width]="660"
+  [height]="540"
+  [showTitle]="true"
+  title="Non-disclosure Agreement"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="visible"
+>
+  <div
+    class="popup-body"
+    [innerHTML]="compliance.text"
+    (scroll)="onScroll($event)"
+  ></div>
+  <div class="d-flex justify-content-end mt-3">
+    <dx-button
+      #agreeButton
+      [elementAttr]="{ class: 'me-3' }"
+      [disabled]="disableAgree"
+      (onClick)="agree.emit(compliance.resource)"
+      text="Agree"
+      type="default"
+    >
+    </dx-button>
+    <dx-button (onClick)="visible = false" text="Cancel" type="default">
+    </dx-button>
+  </div>
+</dx-popup>
