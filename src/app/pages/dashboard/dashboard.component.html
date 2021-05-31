@@ -9,6 +9,7 @@
   >
     <dxo-toolbar>
       <dxi-item
+        *ngIf="!isFileOpened"
         widget="dxButton"
         [options]="{
           text: 'Investor: ' + investor.name,
@@ -16,11 +17,25 @@
         }"
       ></dxi-item>
       <dxi-item
+        *ngIf="!isFileOpened"
         widget="dxButton"
         [options]="{
           text: 'Change',
           elementAttr: { class: 'change-investor' },
           onClick: onChangeInvestor
+        }"
+      ></dxi-item>
+      <dxi-item
+        *ngIf="isFileOpened"
+        widget="dxButton"
+        [options]="{ icon: 'arrowleft', onClick: onFileClose }"
+      ></dxi-item>
+      <dxi-item
+        *ngIf="isFileOpened"
+        widget="dxButton"
+        [options]="{
+          text: fileToOpen.name,
+          elementAttr: { class: 'file-opened' }
         }"
       ></dxi-item>
       <dxi-item
@@ -51,7 +66,7 @@
   "
   [render-text]="true"
   class="doc-viewer"
-  [class.d-none]="!fileToOpen.id"
+  *ngIf="isFileOpened"
 ></pdf-viewer>
-<app-nda-popup [compliance]="compliance" (agree)="onComplianceAgree($event)">
+<app-nda-popup [compliance]="compliance" (agree)="onComplianceAgree()">
 </app-nda-popup>

@@ -15,11 +15,16 @@ export class DashboardComponent implements OnInit {
   folders: Folder[] = [];
   files: File[] = [];
   fileToOpen = {} as File;
+  isFileOpened = false;
   loading = false;
   compliance = {} as Compliance;
   investor = {} as Investor;
   onChangeInvestor = () => {
     this.router.navigateByUrl('select-investor');
+  };
+  onFileClose = () => {
+    this.isFileOpened = false;
+    this.fileToOpen = {} as File;
   };
 
   constructor(
@@ -52,14 +57,12 @@ export class DashboardComponent implements OnInit {
     if (file.isForm) {
       this.loading = true;
     } else {
+      this.fileToOpen = file;
       this.loading = true;
       this.dataService.compliance(file.complianceId).subscribe(
         (res) => {
           this.loading = false;
-          this.compliance = {
-            ...res,
-            resource: file,
-          };
+          this.compliance = res;
         },
         (err) => {
           this.loading = false;
@@ -68,8 +71,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  onComplianceAgree(resource: File) {
+  onComplianceAgree() {
     this.compliance = {} as Compliance;
-    this.fileToOpen = resource;
+    this.isFileOpened = true;
   }
 }

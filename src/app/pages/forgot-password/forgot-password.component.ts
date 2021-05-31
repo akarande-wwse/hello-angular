@@ -29,5 +29,6 @@ export class ForgotPasswordComponent {
     const { username } = this.form.formData;
     this.message =
       'If the email you provided is valid in our system, an email will be sent with instructions so you can reset your password.';
+    this.form.instance.resetValues();
   }
 }

@@ -34,6 +34,7 @@ export class NDAPopupComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     const { currentValue } = changes.compliance;
     this.visible = Boolean(currentValue.id);
+    this.disableAgree = true;
   }
 
   onScroll({ target }: Event) {

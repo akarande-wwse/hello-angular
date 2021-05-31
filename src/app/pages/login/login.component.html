@@ -1,6 +1,6 @@
 <div class="h-100 d-flex justify-content-center align-items-center">
   <div class="login p-3 d-flex flex-column shadow">
-    <img [src]="logoUrl" alt="logo" class="logo w-100 mb-3" />
+    <img [src]="logoUrl" alt="logo" class="logo w-100 mb-4" />
     <a routerLink="/forgot-password" class="forgot">Forgot password?</a>
     <form (submit)="handleLogin($event)">
       <dx-form id="loginForm" [formData]="formData" class="w-100">
