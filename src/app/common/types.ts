@@ -10,13 +10,14 @@ export interface Investor {
   id: number;
   name: string;
   userId: number;
+  complianceId: number;
 }
 
 export interface Folder {
   id: number;
   name: string;
   items: Folder[];
-  isForm: boolean;
+  isDirectory: boolean;
 }
 
 export interface File {

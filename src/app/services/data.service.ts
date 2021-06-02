@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { BASE_URL } from '../common/constants';
 import { Folder } from '../common/types';
@@ -20,13 +21,22 @@ export class DataService {
     return this.http.get<Folder[]>(url, this.httpOptions);
   }
 
-  forms(): Observable<any> {
+  forms(): Observable<Folder[]> {
     const url = BASE_URL + `/forms`;
-    return this.http.get<any>(url, this.httpOptions);
+    return this.http.get<Folder[]>(url, this.httpOptions).pipe(
+      map((forms) => {
+        return forms.map((form) => ({ ...form, isForm: true }));
+      })
+    );
   }
 
   compliance(id: number): Observable<any> {
-    const url = BASE_URL + `/compliances/${id}`;
+    const url = BASE_URL + `/compliance/${id}`;
+    return this.http.get<any>(url, this.httpOptions);
+  }
+
+  formData(id: number): Observable<any> {
+    const url = BASE_URL + `/formData?formId=${id}`;
     return this.http.get<any>(url, this.httpOptions);
   }
 }

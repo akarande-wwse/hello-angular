@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { LOGO_URL } from '../../common/constants';
-import { User } from '../../common/types';
+import { Investor, User } from '../../common/types';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,11 +9,18 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnChanges {
   logoUrl = LOGO_URL;
   @Input() user = {} as User;
+  investor!: Investor;
+  changePassword = false;
 
   constructor(private authService: AuthService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    const { currentValue } = changes.user;
+    this.investor = currentValue.investor;
+  }
 
   logout() {
     this.authService.logout();

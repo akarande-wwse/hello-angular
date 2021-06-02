@@ -4,6 +4,7 @@
   width: 26rem;
   position: relative;
   border: 1px solid #ddd;
+  top: -$header-height;
 
   .message {
     position: absolute;

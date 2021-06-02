@@ -16,7 +16,6 @@ export class LoginComponent {
     useSubmitBehavior: true,
     text: 'Sign in',
     elementAttr: { class: 'w-100 mt-5' },
-    type: 'default',
   };
   logoUrl = LOGO_URL;
   showPassword = false;

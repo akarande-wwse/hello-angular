@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { DxFormComponent } from 'devextreme-angular';
 
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 import { LOGO_URL } from '../../common/constants';
-import { Investor } from '../../common/types';
+import { Compliance, Investor } from '../../common/types';
 import { Storage } from '../../services/storage';
 
 @Component({
@@ -15,12 +16,13 @@ import { Storage } from '../../services/storage';
 export class SelectInvestorComponent implements OnInit {
   @ViewChild(DxFormComponent, { static: false }) form!: DxFormComponent;
   formData = {};
-  investors: Investor[] = [];
+  investorList: Investor[] = [];
+  investor = {} as Investor;
+  compliance = {} as Compliance;
   buttonOptions = {
     useSubmitBehavior: true,
     text: 'Select Investor',
     elementAttr: { class: 'w-100 mt-5' },
-    type: 'default',
   };
   logoUrl = LOGO_URL;
   loading = false;
@@ -28,17 +30,38 @@ export class SelectInvestorComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private dataService: DataService,
     private storage: Storage,
     private router: Router
   ) {
-    this.storage.setInvestor(null as any);
+    this.storage.setInvestor(null);
   }
 
   ngOnInit() {
+    this.loading = true;
     this.authService.investors().subscribe(
       (res) => {
         this.loading = false;
-        this.investors = res;
+        this.investorList = res;
+        if (res.length === 1) {
+          this.investor = res[0];
+          this.fetchCompliance();
+        }
+      },
+      (err) => {
+        this.loading = false;
+        this.message = err.message;
+      }
+    );
+  }
+
+  fetchCompliance() {
+    const { complianceId } = this.investor;
+    this.loading = true;
+    this.dataService.compliance(complianceId).subscribe(
+      (res) => {
+        this.loading = false;
+        this.compliance = res;
       },
       (err) => {
         this.loading = false;
@@ -50,8 +73,21 @@ export class SelectInvestorComponent implements OnInit {
   handleSelect(event: Event): void {
     event.preventDefault();
     const { investorId } = this.form.formData;
-    const investor = this.investors.find((x) => x.id === investorId);
-    this.storage.setInvestor(investor as Investor);
+    this.investor = this.investorList.find(
+      (inv) => inv.id === investorId
+    ) as Investor;
+    this.fetchCompliance();
+  }
+
+  onComplianceAgree() {
+    this.compliance = {} as Compliance;
+    this.storage.setInvestor(this.investor);
     this.router.navigateByUrl('/dashboard');
+  }
+
+  onDisagree() {
+    if (this.investorList.length === 1) {
+      this.authService.logout();
+    }
   }
 }

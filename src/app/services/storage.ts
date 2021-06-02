@@ -23,8 +23,11 @@ export class Storage {
     userObservable.subscribe(observer);
   }
 
-  setInvestor(investor: Investor) {
-    this.setUser({ ...this.getUser(), investor });
+  setInvestor(investor: Investor | null) {
+    this.setUser({
+      ...this.getUser(),
+      investor: investor as Investor,
+    });
   }
 
   getInvestor(): Investor {

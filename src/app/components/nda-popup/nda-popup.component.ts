@@ -6,11 +6,9 @@ import {
   SimpleChanges,
   EventEmitter,
 } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { DataService } from '../../services/data.service';
 import { Compliance } from '../../common/types';
-import { Storage } from '../../services/storage';
 
 @Component({
   selector: 'app-nda-popup',
@@ -23,11 +21,7 @@ export class NDAPopupComponent implements OnInit {
   visible = false;
   disableAgree = true;
 
-  constructor(
-    private dataService: DataService,
-    private storage: Storage,
-    private router: Router
-  ) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {}
 

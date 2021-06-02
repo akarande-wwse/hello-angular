@@ -1,0 +1,42 @@
+<dx-popup
+  [width]="450"
+  [height]="350"
+  title="Email"
+  [(visible)]="visible"
+  (onHidden)="closePopup()"
+>
+  <div class="popup-body">
+    <dx-form id="emailForm" [formData]="formData">
+      <dxi-item
+        dataField="subject"
+        [editorOptions]="{ placeholder: 'Subject' }"
+        [label]="{ visible: false }"
+        cssClass="mb-2"
+      >
+        <dxi-validation-rule type="required" message="Subject is required">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item
+        dataField="message"
+        editorType="dxTextArea"
+        [editorOptions]="{ placeholder: 'Message', height: 100 }"
+        [label]="{ visible: false }"
+        cssClass="mb-2"
+      >
+        <dxi-validation-rule type="required" message="Message is required">
+        </dxi-validation-rule>
+      </dxi-item>
+    </dx-form>
+  </div>
+  <div class="d-flex justify-content-end">
+    <dx-button
+      [elementAttr]="{ class: 'me-3' }"
+      (onClick)="sendEmail()"
+      text="Send"
+      type="default"
+    >
+    </dx-button>
+    <dx-button (onClick)="closePopup()" text="Cancel" type="default">
+    </dx-button>
+  </div>
+</dx-popup>

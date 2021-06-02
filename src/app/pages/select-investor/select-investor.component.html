@@ -8,7 +8,7 @@
             dataField="investorId"
             editorType="dxSelectBox"
             [editorOptions]="{
-              dataSource: investors,
+              dataSource: investorList,
               valueExpr: 'id',
               displayExpr: 'name'
             }"
@@ -27,3 +27,9 @@
     <p class="message">{{ message }}</p>
   </div>
 </div>
+<app-nda-popup
+  [compliance]="compliance"
+  (agree)="onComplianceAgree()"
+  (cancel)="onDisagree()"
+>
+</app-nda-popup>

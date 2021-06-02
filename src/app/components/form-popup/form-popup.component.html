@@ -1,0 +1,34 @@
+<dx-popup
+  [width]="660"
+  [height]="540"
+  [title]="form.name"
+  [(visible)]="visible"
+>
+  <div class="popup-body">
+    <dx-form id="dynamicForm" class="pe-3">
+      <dxi-item
+        *ngFor="let group of formData"
+        [itemType]="group.itemType"
+        [caption]="group.caption"
+        [colCount]="group.colCount"
+        [colSpan]="group.colSpan"
+        cssClass="form-group"
+      >
+        <dxi-item
+          *ngFor="let item of group.items"
+          [dataField]="item.dataField"
+          [editorOptions]="item.editorOptions"
+        ></dxi-item>
+      </dxi-item>
+    </dx-form>
+  </div>
+  <div class="d-flex justify-content-end">
+    <dx-button
+      [elementAttr]="{ class: 'me-3' }"
+      (onClick)="handleSave()"
+      text="Save"
+    >
+    </dx-button>
+    <dx-button (onClick)="visible = false" text="Cancel"> </dx-button>
+  </div>
+</dx-popup>

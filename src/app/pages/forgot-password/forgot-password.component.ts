@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxFormComponent } from 'devextreme-angular';
 
 import { AuthService } from '../../services/auth.service';
@@ -16,7 +16,6 @@ export class ForgotPasswordComponent {
     useSubmitBehavior: true,
     text: 'Reset Password',
     elementAttr: { class: 'w-100 mt-5' },
-    type: 'default',
   };
   logoUrl = LOGO_URL;
   loading = false;
@@ -24,7 +23,9 @@ export class ForgotPasswordComponent {
 
   constructor(private authService: AuthService) {}
 
-  handleReset(event: Event): void {
+  ngOnInit() {}
+
+  resetPassword(event: Event): void {
     event.preventDefault();
     const { username } = this.form.formData;
     this.message =

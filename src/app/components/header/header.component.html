@@ -1,12 +1,20 @@
 <div class="header d-flex justify-content-between">
-  <img [src]="logoUrl" alt="logo" class="h-75" />
-  <div>
-    <span>Welcome, {{ user.name }}</span> &nbsp;
+  <img [src]="logoUrl" alt="logo" class="h-100" />
+  <div class="d-flex">
+    <div class="d-flex flex-column align-items-end">
+      <span class="mb-1">Welcome, {{ user.name }}</span>
+      <span>{{ investor.name }}</span>
+    </div>
+    <div class="d-flex flex-column ms-2" *ngIf="investor">
+      <a (click)="changePassword = true" class="mb-1 link">Change Password</a>
+      <a routerLink="/select-investor">Change Investor</a>
+    </div>
     <dx-button
-      [elementAttr]="{ class: 'logout' }"
+      [elementAttr]="{ class: 'logout ms-3' }"
       (onClick)="logout()"
       text="Logout"
     >
     </dx-button>
   </div>
 </div>
+<!-- <app-change-password [(visible)]="changePassword"> </app-change-password> -->

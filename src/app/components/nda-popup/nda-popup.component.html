@@ -1,28 +1,21 @@
-<dx-popup
-  [width]="660"
-  [height]="540"
-  [showTitle]="true"
-  title="Non-disclosure Agreement"
-  [dragEnabled]="false"
-  [closeOnOutsideClick]="true"
-  [(visible)]="visible"
->
+<dx-popup [width]="660" [height]="540" [(visible)]="visible">
+  <div *dxTemplate="let data of 'title'">
+    <h4 class="mt-2">Non-disclosure Agreement</h4>
+  </div>
   <div
     class="popup-body"
     [innerHTML]="compliance.text"
     (scroll)="onScroll($event)"
   ></div>
-  <div class="d-flex justify-content-end mt-3">
+  <div class="d-flex justify-content-end">
     <dx-button
       #agreeButton
       [elementAttr]="{ class: 'me-3' }"
       [disabled]="disableAgree"
       (onClick)="agree.emit()"
       text="Agree"
-      type="default"
     >
     </dx-button>
-    <dx-button (onClick)="visible = false" text="Cancel" type="default">
-    </dx-button>
+    <dx-button (onClick)="visible = false" text="Cancel"> </dx-button>
   </div>
 </dx-popup>

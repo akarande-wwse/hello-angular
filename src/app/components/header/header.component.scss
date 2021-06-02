@@ -4,4 +4,8 @@
   height: $header-height;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #ddd;
+
+  .link {
+    cursor: pointer;
+  }
 }

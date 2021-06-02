@@ -23,9 +23,9 @@ export class AuthService {
   login(username: string, password: string): Observable<User[]> {
     const url = BASE_URL + `/users?username=${username}`;
     return this.http.get<User[]>(url, this.httpOptions).pipe(
-      tap((resp) => {
-        if (resp.length) {
-          this.storage.setUser(resp[0]);
+      tap((res) => {
+        if (res.length) {
+          this.storage.setUser(res[0]);
           this.router.navigateByUrl('/select-investor');
         }
       })
@@ -40,13 +40,6 @@ export class AuthService {
   investors(): Observable<Investor[]> {
     const user = this.storage.getUser();
     const url = BASE_URL + `/investors?userId=${user.id}`;
-    return this.http.get<Investor[]>(url, this.httpOptions).pipe(
-      tap((resp) => {
-        if (resp.length === 1) {
-          this.storage.setInvestor(resp[0]);
-          this.router.navigateByUrl('/dashboard');
-        }
-      })
-    );
+    return this.http.get<Investor[]>(url, this.httpOptions);
   }
 }

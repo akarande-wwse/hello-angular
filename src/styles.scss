@@ -1,5 +1,4 @@
 /* Global Styles */
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
   font-size: 0.94rem;
@@ -22,10 +21,73 @@ a {
   text-decoration: none;
 }
 
-.spinner {
+.loader {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+}
+
+.popup-body {
+  height: calc(100% - 3rem);
+  overflow: auto;
+  margin-bottom: 1.25rem;
+}
+
+.dx-popup-title div {
+  font-size: 1.25rem;
+}
+
+.dx-button-mode-contained {
+  border-radius: 0;
+  border: 1px solid black;
+  color: black;
+  &:hover {
+    background-color: #9c9ca0;
+    border: 1px solid black;
+  }
+  &:focus,
+  &:active {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+  }
+}
+
+.dx-texteditor.dx-editor-outlined {
+  border-radius: 0;
+  border: 1px solid #9c9ca0;
+}
+
+.dx-theme-generic-typography a {
+  color: #4d4d4d;
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+}
+
+.dx-dropdowneditor.dx-editor-outlined {
+  border: 0;
+  border-bottom: 1px solid #4d4d4d;
+}
+
+.dx-dropdowneditor-button {
+  border: 0;
+  &:hover,
+  &:focus,
+  &:active {
+    border: 0;
+    background-color: white;
+  }
+}
+
+.dx-dropdowneditor-icon {
+  &:hover,
+  &:focus,
+  &:active {
+    border: 0;
+    background-color: white;
+  }
 }
