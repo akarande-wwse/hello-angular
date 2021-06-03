@@ -14,7 +14,7 @@ import {
   DxTextAreaModule,
   DxLoadIndicatorModule,
 } from 'devextreme-angular';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 
 import { HeaderComponent } from '../components/header/header.component';
 import { NDAPopupComponent } from '../components/nda-popup/nda-popup.component';
@@ -43,7 +43,7 @@ const modules = [
   DxFileManagerModule,
   DxTextAreaModule,
   DxLoadIndicatorModule,
-  PdfViewerModule,
+  PdfJsViewerModule,
 ];
 
 @NgModule({

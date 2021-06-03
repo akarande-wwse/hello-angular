@@ -44,5 +44,6 @@ export class ChangePasswordComponent implements OnInit {
 
   closePopup() {
     this.visibleChange.emit(false);
+    this.form.instance.resetValues();
   }
 }

@@ -17,7 +17,6 @@ export interface Folder {
   id: number;
   name: string;
   items: Folder[];
-  isDirectory: boolean;
 }
 
 export interface File {
@@ -26,6 +25,8 @@ export interface File {
   folderId: number;
   isForm: boolean;
   complianceId: number;
+  download: boolean;
+  print: boolean;
 }
 
 export interface Compliance {

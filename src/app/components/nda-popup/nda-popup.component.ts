@@ -39,4 +39,15 @@ export class NDAPopupComponent implements OnInit {
       this.disableAgree = false;
     }
   }
+
+  onPrintClick() {
+    var printWindow = window.open('', '_blank') as Window;
+    printWindow.document.write(
+      '<html><head><title>Non-disclosure Agreement/title></head><body>'
+    );
+    printWindow.document.write(this.compliance.text);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  }
 }

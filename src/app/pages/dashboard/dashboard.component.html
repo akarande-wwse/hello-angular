@@ -23,7 +23,7 @@
         }"
       ></dxi-item>
       <dxi-item
-        *ngIf="isFileOpened"
+        *ngIf="isFileOpened && fileToOpen.print"
         widget="dxButton"
         [options]="{
           icon: 'print',
@@ -55,14 +55,15 @@
     </dxo-toolbar>
   </dx-file-manager>
 </div>
-<pdf-viewer
-  src="
-    https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf
-  "
-  [render-text]="true"
-  class="doc-viewer"
-  *ngIf="isFileOpened"
-></pdf-viewer>
+<div class="doc-viewer" *ngIf="isFileOpened">
+  <ng2-pdfjs-viewer
+    pdfSrc="https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
+    [openFile]="false"
+    [showSpinner]="true"
+    [download]="fileToOpen.download"
+    [print]="fileToOpen.print"
+  ></ng2-pdfjs-viewer>
+</div>
 <app-nda-popup
   [compliance]="compliance"
   (agree)="onComplianceAgree()"

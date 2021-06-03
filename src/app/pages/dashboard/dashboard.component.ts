@@ -48,7 +48,8 @@ export class DashboardComponent implements OnInit {
 
   customizeColumns(columns: any) {
     columns[2].width = '25%'; // date column
-    columns[3].alignment = 'left'; // size column
+    columns[3].width = '15%'; // size column
+    columns[3].alignment = 'left';
     return columns;
   }
 
@@ -80,5 +81,6 @@ export class DashboardComponent implements OnInit {
 
   onDisagree() {
     this.compliance = {} as Compliance;
+    this.fileToOpen = {} as File;
   }
 }

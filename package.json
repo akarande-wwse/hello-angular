@@ -21,8 +21,7 @@
     "@angular/router": "~12.0.0",
     "devextreme": "20.2.7",
     "devextreme-angular": "20.2.7",
-    "ng2-pdf-viewer": "^7.0.1",
-    "ngx-doc-viewer": "^2.0.2",
+    "ng2-pdfjs-viewer": "^6.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

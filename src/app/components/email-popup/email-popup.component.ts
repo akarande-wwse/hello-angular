@@ -14,7 +14,7 @@ import { DxFormComponent } from 'devextreme-angular';
   styleUrls: ['./email-popup.component.scss'],
 })
 export class EmailPopupComponent implements OnInit {
-  @ViewChild(DxFormComponent, { static: false }) dxForm!: DxFormComponent;
+  @ViewChild(DxFormComponent, { static: false }) form!: DxFormComponent;
   formData = { subject: '', message: '' };
   @Input() visible = false;
   @Output() visibleChange = new EventEmitter();
@@ -24,10 +24,11 @@ export class EmailPopupComponent implements OnInit {
   ngOnInit() {}
 
   sendEmail() {
-    this.dxForm.instance.validate();
+    this.form.instance.validate();
   }
 
   closePopup() {
     this.visibleChange.emit(false);
+    this.form.instance.resetValues();
   }
 }

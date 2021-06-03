@@ -1,21 +1,40 @@
-<dx-popup [width]="660" [height]="540" [(visible)]="visible">
-  <div *dxTemplate="let data of 'title'">
-    <h4 class="mt-2">Non-disclosure Agreement</h4>
-  </div>
+<dx-popup
+  [width]="660"
+  [height]="540"
+  title="Non-disclosure Agreement"
+  [(visible)]="visible"
+>
   <div
     class="popup-body"
     [innerHTML]="compliance.text"
     (scroll)="onScroll($event)"
   ></div>
-  <div class="d-flex justify-content-end">
-    <dx-button
-      #agreeButton
-      [elementAttr]="{ class: 'me-3' }"
-      [disabled]="disableAgree"
-      (onClick)="agree.emit()"
-      text="Agree"
-    >
-    </dx-button>
-    <dx-button (onClick)="cancel.emit()" text="Cancel"> </dx-button>
+  <div class="d-flex justify-content-between">
+    <div>
+      <dx-button
+        icon="print"
+        (onClick)="onPrintClick()"
+        [elementAttr]="{ class: 'me-2' }"
+      >
+      </dx-button>
+      <dx-button icon="download" [elementAttr]="{ class: 'me-2' }"> </dx-button>
+      <dx-button icon="email"> </dx-button>
+    </div>
+    <div>
+      <dx-button
+        #agreeButton
+        [elementAttr]="{ class: 'ms-2' }"
+        [disabled]="disableAgree"
+        (onClick)="agree.emit()"
+        text="Agree"
+      >
+      </dx-button>
+      <dx-button
+        [elementAttr]="{ class: 'ms-2' }"
+        (onClick)="cancel.emit()"
+        text="Cancel"
+      >
+      </dx-button>
+    </div>
   </div>
 </dx-popup>

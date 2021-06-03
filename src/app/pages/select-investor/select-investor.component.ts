@@ -86,6 +86,7 @@ export class SelectInvestorComponent implements OnInit {
   }
 
   onDisagree() {
+    this.compliance = {} as Compliance;
     if (this.investorList.length === 1) {
       this.authService.logout();
     }

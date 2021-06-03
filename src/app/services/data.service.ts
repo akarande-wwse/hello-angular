@@ -21,9 +21,9 @@ export class DataService {
     return this.http.get<Folder[]>(url, this.httpOptions);
   }
 
-  forms(): Observable<File[]> {
+  forms(): Observable<any[]> {
     const url = BASE_URL + `/forms`;
-    return this.http.get<File[]>(url, this.httpOptions).pipe(
+    return this.http.get<any[]>(url, this.httpOptions).pipe(
       map((forms) => {
         return forms.map((form) => ({ ...form, isForm: true }));
       })

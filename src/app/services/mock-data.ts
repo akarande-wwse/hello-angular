@@ -19,6 +19,45 @@ export const INVESTORS = [
   },
 ];
 
+const FILES = [
+  {
+    id: 1,
+    name: 'One Page Summary',
+    isDirectory: false,
+    complianceId: 1,
+    size: 158000,
+    download: true,
+    print: true,
+  },
+  {
+    id: 2,
+    name: 'Investor Presentation',
+    isDirectory: false,
+    complianceId: 1,
+    size: 321000,
+    download: false,
+    print: false,
+  },
+  {
+    id: 3,
+    name: 'Terms Sheet',
+    isDirectory: false,
+    complianceId: 1,
+    size: 123000,
+    download: true,
+    print: true,
+  },
+  {
+    id: 4,
+    name: 'One Page Summary',
+    isDirectory: false,
+    complianceId: 1,
+    size: 74000,
+    download: false,
+    print: false,
+  },
+];
+
 export const FOLDERS = [
   {
     id: 1,
@@ -34,20 +73,7 @@ export const FOLDERS = [
             id: 111,
             name: 'Marketing Materials',
             isDirectory: true,
-            items: [
-              {
-                id: 1111,
-                name: 'One Page Summary',
-                isDirectory: false,
-                complianceId: 1,
-              },
-              {
-                id: 1112,
-                name: 'Investor Presentation',
-                isDirectory: false,
-                complianceId: 1,
-              },
-            ],
+            items: FILES.slice(0, 2),
           },
         ],
       },
@@ -68,17 +94,12 @@ export const FOLDERS = [
             name: 'Legal Document',
             isDirectory: true,
             items: [
+              ...FILES.slice(2),
               {
                 id: 2111,
-                name: 'Terms Sheet',
-                isDirectory: false,
-                complianceId: 1,
-              },
-              {
-                id: 2112,
-                name: 'One Page Summary',
-                isDirectory: false,
-                complianceId: 1,
+                name: 'Archive',
+                isDirectory: true,
+                items: FILES.slice(-1),
               },
             ],
           },
