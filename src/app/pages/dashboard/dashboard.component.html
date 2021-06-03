@@ -6,20 +6,13 @@
     height="100%"
     (onSelectedFileOpened)="handleFileOpen($event)"
     (onCurrentDirectoryChanged)="handleFolderChange($event)"
+    [customizeDetailColumns]="customizeColumns"
   >
     <dxo-toolbar>
       <dxi-item
-        *ngIf="!isFileOpened"
-        widget="dxButton"
-        [options]="{
-          text: 'Investor: ' + investor.name,
-          elementAttr: { class: 'investor' }
-        }"
-      ></dxi-item>
-      <dxi-item
         *ngIf="isFileOpened"
         widget="dxButton"
-        [options]="{ icon: 'arrowleft', onClick: onFileClose }"
+        [options]="{ icon: 'arrowleft', onClick: onFileBack }"
       ></dxi-item>
       <dxi-item
         *ngIf="isFileOpened"
@@ -28,6 +21,16 @@
           text: fileToOpen.name,
           elementAttr: { class: 'file-opened' }
         }"
+      ></dxi-item>
+      <dxi-item
+        *ngIf="isFileOpened"
+        widget="dxButton"
+        [options]="{
+          icon: 'print',
+          elementAttr: { class: 'print-icon' },
+          onClick: onEmailClick
+        }"
+        location="after"
       ></dxi-item>
       <dxi-item
         widget="dxButton"
@@ -60,7 +63,12 @@
   class="doc-viewer"
   *ngIf="isFileOpened"
 ></pdf-viewer>
-<app-nda-popup [compliance]="compliance" (agree)="onComplianceAgree()">
+<app-nda-popup
+  [compliance]="compliance"
+  (agree)="onComplianceAgree()"
+  (cancel)="onDisagree()"
+>
 </app-nda-popup>
-<app-form-popup [form]="fileToOpen" *ngIf="fileToOpen.isForm"> </app-form-popup>
+<app-form-popup [formInfo]="fileToOpen" *ngIf="fileToOpen.isForm">
+</app-form-popup>
 <app-email-popup [(visible)]="showEmailPopup"> </app-email-popup>

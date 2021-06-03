@@ -2,12 +2,12 @@
   <img [src]="logoUrl" alt="logo" class="h-100" />
   <div class="d-flex">
     <div class="d-flex flex-column align-items-end">
-      <span class="mb-1">Welcome, {{ user.name }}</span>
-      <span>{{ investor.name }}</span>
+      <span>Welcome, {{ user.name }}</span>
+      <span *ngIf="investor">{{ investor?.name }}</span>
     </div>
-    <div class="d-flex flex-column ms-2" *ngIf="investor">
-      <a (click)="changePassword = true" class="mb-1 link">Change Password</a>
-      <a routerLink="/select-investor">Change Investor</a>
+    <div class="d-flex flex-column ms-3">
+      <a (click)="changePassword = true" class="link">Change Password</a>
+      <a routerLink="/select-investor" *ngIf="investor">Change Investor</a>
     </div>
     <dx-button
       [elementAttr]="{ class: 'logout ms-3' }"
@@ -17,4 +17,4 @@
     </dx-button>
   </div>
 </div>
-<!-- <app-change-password [(visible)]="changePassword"> </app-change-password> -->
+<app-change-password [(visible)]="changePassword"> </app-change-password>

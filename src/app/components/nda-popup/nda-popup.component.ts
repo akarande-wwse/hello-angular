@@ -18,6 +18,7 @@ import { Compliance } from '../../common/types';
 export class NDAPopupComponent implements OnInit {
   @Input() compliance!: Compliance;
   @Output() agree = new EventEmitter();
+  @Output() cancel = new EventEmitter();
   visible = false;
   disableAgree = true;
 
@@ -25,7 +26,7 @@ export class NDAPopupComponent implements OnInit {
 
   ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges) {
     const { currentValue } = changes.compliance;
     this.visible = Boolean(currentValue.id);
     this.disableAgree = true;

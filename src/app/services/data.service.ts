@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { BASE_URL } from '../common/constants';
-import { Folder } from '../common/types';
+import { Folder, File, Compliance } from '../common/types';
 import { Storage } from '../services/storage';
 
 @Injectable({ providedIn: 'root' })
@@ -21,22 +21,22 @@ export class DataService {
     return this.http.get<Folder[]>(url, this.httpOptions);
   }
 
-  forms(): Observable<Folder[]> {
+  forms(): Observable<File[]> {
     const url = BASE_URL + `/forms`;
-    return this.http.get<Folder[]>(url, this.httpOptions).pipe(
+    return this.http.get<File[]>(url, this.httpOptions).pipe(
       map((forms) => {
         return forms.map((form) => ({ ...form, isForm: true }));
       })
     );
   }
 
-  compliance(id: number): Observable<any> {
+  compliance(id: number): Observable<Compliance> {
     const url = BASE_URL + `/compliance/${id}`;
-    return this.http.get<any>(url, this.httpOptions);
+    return this.http.get<Compliance>(url, this.httpOptions);
   }
 
-  formData(id: number): Observable<any> {
-    const url = BASE_URL + `/formData?formId=${id}`;
+  formData(formId: number): Observable<any> {
+    const url = BASE_URL + `/formData?formId=${formId}`;
     return this.http.get<any>(url, this.httpOptions);
   }
 }

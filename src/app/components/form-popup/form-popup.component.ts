@@ -20,8 +20,8 @@ import { File } from 'src/app/common/types';
   encapsulation: ViewEncapsulation.None,
 })
 export class FormPopupComponent implements OnInit {
-  @ViewChild(DxFormComponent, { static: false }) dxForm!: DxFormComponent;
-  @Input() form!: File;
+  @ViewChild(DxFormComponent, { static: false }) form!: DxFormComponent;
+  @Input() formInfo!: File;
   @Output() save = new EventEmitter();
   formData: any = [];
   visible = false;
@@ -31,8 +31,8 @@ export class FormPopupComponent implements OnInit {
 
   ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const { currentValue } = changes.form;
+  ngOnChanges(changes: SimpleChanges) {
+    const { currentValue } = changes.formInfo;
     this.visible = Boolean(currentValue.id);
     if (this.visible) {
       this.loading = true;
@@ -49,6 +49,6 @@ export class FormPopupComponent implements OnInit {
   }
 
   handleSave() {
-    console.log(this.dxForm.formData);
+    console.log(this.form.formData);
   }
 }

@@ -17,10 +17,6 @@ html {
   height: 100%;
 }
 
-a {
-  text-decoration: none;
-}
-
 .loader {
   position: fixed;
   left: 50%;
@@ -62,6 +58,7 @@ a {
 
 .dx-theme-generic-typography a {
   color: #4d4d4d;
+  text-decoration: none;
   &:hover {
     text-decoration: underline;
     text-underline-offset: 0.25rem;
@@ -83,11 +80,7 @@ a {
   }
 }
 
-.dx-dropdowneditor-icon {
-  &:hover,
-  &:focus,
-  &:active {
-    border: 0;
-    background-color: white;
-  }
+.dx-popup-wrapper > .dx-overlay-content {
+  border: 1px solid black;
+  border-radius: 0;
 }

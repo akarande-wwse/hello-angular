@@ -3,7 +3,8 @@
 .dashboard {
   height: calc(100% - #{$header-height});
 
-  .mail-icon i {
+  .mail-icon i,
+  .print-icon i {
     font-size: 1.5rem;
     margin-right: 0.25rem;
   }
@@ -15,7 +16,7 @@
     pointer-events: none;
     span {
       font-size: 1.06rem;
-      font-weight: 600;
+      color: #333;
     }
   }
 }

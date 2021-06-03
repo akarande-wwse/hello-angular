@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
-import { Folder, File, Investor, Compliance } from '../../common/types';
+import { Folder, File, Compliance } from '../../common/types';
 import { Storage } from '../../services/storage';
 import { forkJoin } from 'rxjs';
 
@@ -13,14 +13,14 @@ import { forkJoin } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   folders: Folder[] = [];
+  files: File[] = [];
   fileToOpen = {} as File;
   isFileOpened = false;
   loading = false;
   compliance = {} as Compliance;
-  investor = {} as Investor;
   showEmailPopup = false;
 
-  onFileClose = () => {
+  onFileBack = () => {
     this.isFileOpened = false;
     this.fileToOpen = {} as File;
   };
@@ -28,11 +28,9 @@ export class DashboardComponent implements OnInit {
     this.showEmailPopup = true;
   };
 
-  constructor(private dataService: DataService, private storage: Storage) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    const user = this.storage.getUser();
-    this.investor = user.investor;
     this.loading = true;
     forkJoin(this.dataService.folders(), this.dataService.forms()).subscribe(
       (res) => {
@@ -48,8 +46,14 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  customizeColumns(columns: any) {
+    columns[2].width = '25%'; // date column
+    columns[3].alignment = 'left'; // size column
+    return columns;
+  }
+
   handleFolderChange(event: any) {
-    console.log('folder', event);
+    console.log(event);
   }
 
   handleFileOpen(event: any) {
@@ -72,5 +76,9 @@ export class DashboardComponent implements OnInit {
   onComplianceAgree() {
     this.compliance = {} as Compliance;
     this.isFileOpened = true;
+  }
+
+  onDisagree() {
+    this.compliance = {} as Compliance;
   }
 }

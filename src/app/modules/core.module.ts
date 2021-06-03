@@ -9,10 +9,10 @@ import {
   DxNumberBoxModule,
   DxButtonModule,
   DxFormModule,
-  DxAutocompleteModule,
   DxFileManagerModule,
   DxPopupModule,
   DxTextAreaModule,
+  DxLoadIndicatorModule,
 } from 'devextreme-angular';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
@@ -38,11 +38,11 @@ const modules = [
   DxCheckBoxModule,
   DxSelectBoxModule,
   DxNumberBoxModule,
-  DxTextAreaModule,
   DxButtonModule,
   DxFormModule,
-  DxAutocompleteModule,
   DxFileManagerModule,
+  DxTextAreaModule,
+  DxLoadIndicatorModule,
   PdfViewerModule,
 ];
 
