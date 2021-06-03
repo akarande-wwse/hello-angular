@@ -25,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
     newPassword: '',
     confirmPassword: '',
   };
-  email = 'jsmith@abc-capital.com';
+  email = 'akarande@wwse.com';
   logoUrl = LOGO_URL;
   loading = false;
   message = '';

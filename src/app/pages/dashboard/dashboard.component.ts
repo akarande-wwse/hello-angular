@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
       (res) => {
         this.folders = [
           ...res[0],
-          { name: 'Forms', items: res[1], isDirectory: true },
+          { name: 'Wire Instructions', items: res[1], isDirectory: true },
         ] as Folder[];
         this.loading = false;
       },
